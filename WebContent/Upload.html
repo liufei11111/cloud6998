@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+  <head>
+    <script>
+      function uploadVideo()
+        {
+        }
+      function validateFile()
+      {
+     var fname = new String(document.getElementById("file").value);
+     var len = fname.length;
+     var valid = false;
+     if (fname.substring(len-4, len).toLowerCase() == ".mov")
+     {
+      valid = true;
+     }
+     else if (fname.substring(len-4, len).toLowerCase() == ".mp4")
+ {
+  valid = true;
+ }
+     else if (fname.substring(len-4, len).toLowerCase() == ".flv")
+ {
+  valid = true;
+ }
+
+     if (valid == false)
+     {
+      alert("Wrong format of video.");
+     }
+
+     return valid;
+      }
+      function getBrowser()
+      {            
+          if(window.innerWidth <= 800 && window.innerHeight <= 600)
+          {
+              return "http://54.204.185.214:1935/live/myStream/playlist.m3u8";
+          } 
+          else 
+          {
+              return "http://www.wowza.com/resources/3.6.0/examples/LiveVideoStreaming/FlashHTTPPlayer/player.html"
+          }
+      } 
+    </script>      
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>
+    	Upload video
+    </title>
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+    rel="stylesheet">
+  </head>
+  
+  <body>
+    padding-top: 100px;
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">el Pone Pelis</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="Home.jsp">Home</a>
+            </li>
+            <li>
+              <a href="Upload.html">Upload</a>
+            </li>
+            <li>
+              <a href="Delete.jsp">Delete</a>
+            </li>
+            <li>
+              <a href="javascript:document.location.href=getBrowser();" >LiveStream</a>
+            </li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+    </div>      
+    <div class="container">
+      <div class="well">
+        <h3>
+          Upload your moody peli!
+        </h3>
+        <p>
+          Make sure you tag it!
+        </p>
+      </div>
+      <form method="POST" action="FileUploadServlet" enctype="multipart/form-data" onsubmit="return validateFile()">
+        <div class="form-group">
+          <label>
+            Upload your file:
+          </label>
+          <input type="file" name="file" id="file" class="form-control"/>
+          <!--
+          <button type="submit" class="btn btn-default pull-right"  onclick="uploadVideo()" style="top 20px" name="Upload!">
+            Upload!
+          </button>
+          -->
+          <input type="submit" class="btn btn-default pull-right" name="upload" id="upload" value="Upload" style="top 20px"/>
+        </div>
+      </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
+    >
+    </script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"
+    >
+    </script>
+  </body>
+
+</html>
